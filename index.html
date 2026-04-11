@@ -2,50 +2,116 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Basic Web App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Counter App</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
     body {
-      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 40px;
       text-align: center;
-      margin-top: 100px;
-      background-color: #f0f0f0;
-    }
-    h1 {
-      color: #333;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      background-color: #0070f3;
       color: white;
-      border-radius: 8px;
+      width: 320px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .counter {
+      font-size: 48px;
+      margin: 20px 0;
+      font-weight: 700;
+      transition: transform 0.2s ease;
+    }
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      background: white;
+      color: #764ba2;
+      font-size: 16px;
+      font-weight: 500;
       cursor: pointer;
+      transition: all 0.3s ease;
     }
+
     button:hover {
-      background-color: #005bb5;
+      transform: scale(1.1);
+      background: #f1f1f1;
     }
-    #counter {
-      font-size: 24px;
-      margin-top: 20px;
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <h1>🚀 My First Web App</h1>
-  <p>Click the button to increase counter</p>
+  <div class="card">
+    <h1>🚀 Counter App</h1>
+    <p>Tap the button to increase the count</p>
 
-  <button onclick="increase()">Click Me</button>
+    <div id="counter" class="counter">0</div>
 
-  <div id="counter">0</div>
+    <button onclick="increase()">Click Me</button>
+  </div>
 
   <script>
     let count = 0;
 
     function increase() {
       count++;
-      document.getElementById("counter").innerText = count;
+
+      const counter = document.getElementById("counter");
+      counter.innerText = count;
+
+      // animation effect
+      counter.style.transform = "scale(1.3)";
+      setTimeout(() => {
+        counter.style.transform = "scale(1)";
+      }, 150);
     }
   </script>
 
